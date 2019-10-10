@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/DMN/20151101/dmn.xsd" xmlns:biodi="http://bpmn.io/schema/dmn/biodi/1.0" id="Definitions_0dppnm6" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="3.0.0-beta.0">
+  <decision id="Decision_0gbhz03" name="Payment Scoring">
+    <extensionElements>
+      <biodi:bounds x="157" y="81" width="180" height="80" />
+    </extensionElements>
+    <decisionTable id="decisionTable_1">
+      <input id="InputClause_0wri7fr" label="Payment Method">
+        <inputExpression id="LiteralExpression_04rp1ff" typeRef="string">
+          <text>paymentMethod</text>
+        </inputExpression>
+        <inputValues id="UnaryTests_0wrnjke">
+          <text>"cash","prepayment","invoice","creditcard","twint"</text>
+        </inputValues>
+      </input>
+      <input id="input_1" label="Legal Entity">
+        <inputExpression id="inputExpression_1" typeRef="string">
+          <text>legalEntity</text>
+        </inputExpression>
+        <inputValues id="UnaryTests_04rwo3q">
+          <text>"juristical","private"</text>
+        </inputValues>
+      </input>
+      <input id="InputClause_0hc887y" label="Order Volume">
+        <inputExpression id="LiteralExpression_17ilkcs" typeRef="double">
+          <text>orderVolume</text>
+        </inputExpression>
+      </input>
+      <output id="output_1" label="Scoring" name="scoring" typeRef="string">
+        <outputValues id="UnaryTests_10swbbo">
+          <text>"green","orange","red"</text>
+        </outputValues>
+      </output>
+      <output id="OutputClause_0un12k1" label="Explanation" name="explanation" typeRef="string" />
+      <rule id="DecisionRule_1t0tto6">
+        <description></description>
+        <inputEntry id="UnaryTests_0g4jmmk">
+          <text>"invoice"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0a0syoj">
+          <text>"private"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0oxew4u">
+          <text>&gt;= 300</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0hqhhim">
+          <text>"red"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_0z55y2z">
+          <text>"Not possible for private persons."</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0nh1vln">
+        <description></description>
+        <inputEntry id="UnaryTests_0zr1aif">
+          <text>"invoice"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_10s6awa">
+          <text>"private"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0dsev84">
+          <text>[100..300[</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_119anq9">
+          <text>"orange"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_125ps9l">
+          <text>"We need to run a credit check."</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1lqw7f5">
+        <inputEntry id="UnaryTests_0n2feow">
+          <text>"invoice"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_144sm2j">
+          <text>"private"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0ozn729">
+          <text>&lt; 300</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_04r0x7n">
+          <text>"green"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_0ys0y0p">
+          <text>"All good!"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0if640w">
+        <description></description>
+        <inputEntry id="UnaryTests_1jzojnn">
+          <text>"invoice"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_154yn6u">
+          <text>"juristical"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1flzmck">
+          <text>&gt;= 1200</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0yfa1v8">
+          <text>"orange"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_052rigc">
+          <text>"We have to find other options."</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1ox5fd1">
+        <description></description>
+        <inputEntry id="UnaryTests_019862q">
+          <text>"invoice"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0abg0ct">
+          <text>"juristical"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_00trcmx">
+          <text>[300..1200[</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_06papw2">
+          <text>"orange"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_0qwooer">
+          <text>"We need to run a credit check."</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1v7vqc1">
+        <inputEntry id="UnaryTests_19fwl5t">
+          <text>"invoice"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_02q3sq6">
+          <text>"juristical"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0z5puk9">
+          <text>&lt; 100</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_03rldg6">
+          <text>"green"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_0mr8qyf">
+          <text>"All good!"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0b222ee">
+        <description></description>
+        <inputEntry id="UnaryTests_06nmfpi">
+          <text>"cash"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1rj7938">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_16unt0w">
+          <text>&gt;= 3000</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_19xnbpv">
+          <text>"red"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_0o815xh">
+          <text>"Money laundering!"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0vnotve">
+        <description></description>
+        <inputEntry id="UnaryTests_0l9o97b">
+          <text>"cash"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_06qj2l3">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1ck91oo">
+          <text>[2000..3000[</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0hmvkwx">
+          <text>"orange"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_1bbz8t0">
+          <text>"Money laundering?"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1qh27y1">
+        <description></description>
+        <inputEntry id="UnaryTests_03jykpi">
+          <text>"cash"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_18u1m3h">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0czky9s">
+          <text>[500..2000[</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1dmm6dl">
+          <text>"orange"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_02nwfi7">
+          <text>"Too much cash for delivery service pocket."</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1v02gty">
+        <inputEntry id="UnaryTests_070awuq">
+          <text>"cash"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0un5c41">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0il5h2n">
+          <text>&lt; 500</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1ospzi4">
+          <text>"green"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_0qbxfok">
+          <text>"All good!"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0k9zukl">
+        <description></description>
+        <inputEntry id="UnaryTests_07uh77o">
+          <text>"creditcard"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_02z3v02">
+          <text>"private"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_174ppff">
+          <text>&gt;= 300</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1ggema7">
+          <text>"orange"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_1kka8k2">
+          <text>"We need to verify if the credit card is covered."</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0hn0ee3">
+        <inputEntry id="UnaryTests_0pv65gp">
+          <text>"creditcard"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1b84gwf">
+          <text>"private"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0lwovpf">
+          <text>&lt; 300</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_148zszr">
+          <text>"green"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_106wn6w">
+          <text>"All good!"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_08ijucq">
+        <description></description>
+        <inputEntry id="UnaryTests_0xjqn4u">
+          <text>"creditcard"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1j360fr">
+          <text>"juristical"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1xlke7p">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1vzl9gv">
+          <text>"orange"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_0alf5hk">
+          <text>"Maybe corporate credit card?"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0udrah9">
+        <inputEntry id="UnaryTests_14ri0c2">
+          <text>"twint"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1y63cpn">
+          <text>"private"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_06fblsl">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1rqlf5q">
+          <text>"green"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_1no19p3">
+          <text>"All good!"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1rc26ld">
+        <inputEntry id="UnaryTests_1sldz9d">
+          <text>"twint"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0xtcqef">
+          <text>"juristical"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1tsv88m">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0nqceiu">
+          <text>"orange"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_0oou0fy">
+          <text>"We have to find other options."</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1bffnck">
+        <inputEntry id="UnaryTests_1jmq5ak">
+          <text>"prepayment"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_02e6dw9">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0sm97ey">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1cyaitg">
+          <text>"green"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_01bu9dp">
+          <text>"All good!"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0x7wmiz">
+        <description></description>
+        <inputEntry id="UnaryTests_0ju1mqr">
+          <text>not("cash","prepayment","invoice","creditcard","twint")</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1ffjatg">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0y2zj5p">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0pxv5eb">
+          <text>"orange"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_1k58q72">
+          <text>"We have to find other options."</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+</definitions>
