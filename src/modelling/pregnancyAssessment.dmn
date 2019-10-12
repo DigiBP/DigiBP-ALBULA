@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/DMN/20151101/dmn.xsd" xmlns:biodi="http://bpmn.io/schema/dmn/biodi/1.0" id="Definitions_0kh5we2" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="3.3.4">
+  <decision id="Decision_0dw6tue" name="Pregnancy Pathway">
+    <extensionElements>
+      <biodi:bounds x="157" y="81" width="180" height="80" />
+    </extensionElements>
+    <decisionTable id="decisionTable_1">
+      <input id="input_1" label="Height">
+        <inputExpression id="inputExpression_1" typeRef="double">
+          <text></text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_0znny77" label="Weight">
+        <inputExpression id="LiteralExpression_144bgst" typeRef="double">
+          <text></text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_09ds17a" label="Blood pressure">
+        <inputExpression id="LiteralExpression_0brj3n4" typeRef="string">
+          <text></text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_0gkszmc" label="Urine">
+        <inputExpression id="LiteralExpression_17s7dea" typeRef="string">
+          <text></text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_1d6lucy" label="Family Health">
+        <inputExpression id="LiteralExpression_03iizfr" typeRef="string">
+          <text></text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_0k8i65a" label="Previous pregnancies">
+        <inputExpression id="LiteralExpression_19dfbn9" typeRef="string">
+          <text></text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_11epnc6" label="Medical history">
+        <inputExpression id="LiteralExpression_1xthf5u" typeRef="string">
+          <text></text>
+        </inputExpression>
+        <inputValues id="UnaryTests_0brsa5g">
+          <text>"Diabetes","high BMI","epilepsy","heart conditions"</text>
+        </inputValues>
+      </input>
+      <input id="InputClause_0vz701s" label="Social circumstances">
+        <inputExpression id="LiteralExpression_0veaw0j" typeRef="string">
+          <text></text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_1u8cxgv" label="Age">
+        <inputExpression id="LiteralExpression_10ysrru" typeRef="string">
+          <text></text>
+        </inputExpression>
+      </input>
+      <output id="output_1" label="Pathway" name="pathway" typeRef="string">
+        <outputValues id="UnaryTests_1or15k3">
+          <text>"Obstretic Led Team Care","Midwife Led Care"</text>
+        </outputValues>
+      </output>
+      <rule id="DecisionRule_1e4ovxx">
+        <inputEntry id="UnaryTests_1c7bhxu">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_06irfzw">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1c7e2o3">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0y60bzm">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_10ui619">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0rz7575">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_17205a5">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0s3umvm">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_10cd0qz">
+          <text>&gt;=40</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0xr07gg">
+          <text>"Obstratic Led Team Care"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_00vnxg7">
+        <inputEntry id="UnaryTests_179lrg1">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0zbawn4">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1xja6ya">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1b3fy5v">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0tjckka">
+          <text>"diabetes"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1g63dgv">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1j51ery">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0ok1niu">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1rfefva">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0jufoxo">
+          <text>"Obstratic Led Team Care"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0ilic5y">
+        <inputEntry id="UnaryTests_1qvtw3w">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_15oayai">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1r5arzg">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_153dd0c">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0s3166h">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0x9pwxp">
+          <text>"stillbirth"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1y08uv0">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1xseqz8">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0e8d631">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0szt7z8">
+          <text>"Obstratic Led Team Care"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_01hogeh">
+        <inputEntry id="UnaryTests_0xefdcg">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_043t3i2">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0sn20xk">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_08skxus">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1opbewh">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_06gw2se">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0yc45eh">
+          <text>"mental health issues"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1dctqqn">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_128h8cg">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0xjvist">
+          <text></text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+</definitions>
