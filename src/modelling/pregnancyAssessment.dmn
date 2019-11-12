@@ -7,77 +7,77 @@
     <decisionTable id="decisionTable_1">
       <input id="InputClause_0gjxys3" label="Age (years)">
         <inputExpression id="LiteralExpression_0om9fpa" typeRef="integer">
-          <text></text>
+          <text>age</text>
         </inputExpression>
       </input>
       <input id="InputClause_09ds17a" label="Hypertension in family ">
         <inputExpression id="LiteralExpression_0brj3n4" typeRef="boolean">
-          <text></text>
+          <text>hypertensionFamily </text>
         </inputExpression>
       </input>
       <input id="InputClause_0gkszmc" label="Diabetes in family">
         <inputExpression id="LiteralExpression_17s7dea" typeRef="boolean">
-          <text></text>
+          <text>diabetesFamily</text>
         </inputExpression>
       </input>
       <input id="InputClause_16pooii" label="Personal hypertension / Systolic">
         <inputExpression id="LiteralExpression_0lntx28" typeRef="integer">
-          <text></text>
+          <text>personalSystolic</text>
         </inputExpression>
       </input>
       <input id="InputClause_08ebryb" label="Personal hypertension / Diastolic">
         <inputExpression id="LiteralExpression_0y6f8zf" typeRef="integer">
-          <text></text>
+          <text>personalDiastolic</text>
         </inputExpression>
       </input>
       <input id="InputClause_0k8i65a" label="Personal diabetes">
         <inputExpression id="LiteralExpression_19dfbn9" typeRef="double">
-          <text></text>
+          <text>personalDiabetes</text>
         </inputExpression>
       </input>
       <input id="InputClause_11epnc6" label="Overweight/obesity - BMI">
         <inputExpression id="LiteralExpression_1xthf5u" typeRef="double">
-          <text></text>
+          <text>bmi</text>
         </inputExpression>
       </input>
       <input id="InputClause_0vz701s" label="Previous miscarriage">
         <inputExpression id="LiteralExpression_0veaw0j" typeRef="boolean">
-          <text></text>
+          <text>previousMiscarriage</text>
         </inputExpression>
       </input>
       <input id="InputClause_1u8cxgv" label="Previous gestational diabetes">
         <inputExpression id="LiteralExpression_10ysrru" typeRef="boolean">
-          <text></text>
+          <text>previousGestationalDiabetes</text>
         </inputExpression>
       </input>
       <input id="InputClause_01rvfqu" label="Previous preeclampsia/eclampsia">
         <inputExpression id="LiteralExpression_0npebvg" typeRef="boolean">
-          <text></text>
+          <text>previousPreeclampsiaEclampsia</text>
         </inputExpression>
       </input>
       <input id="InputClause_074q059" label="Previous premature rupture of membranes">
         <inputExpression id="LiteralExpression_1obtd7q" typeRef="integer">
-          <text></text>
+          <text>previousPrematureRuptureMembranes</text>
         </inputExpression>
       </input>
       <input id="InputClause_1exnl7e" label="Previous cesarean section">
         <inputExpression id="LiteralExpression_0arbjjp" typeRef="boolean">
-          <text></text>
+          <text>previousCesareanSection</text>
         </inputExpression>
       </input>
       <input id="InputClause_01kz6m0" label="Previous postpartum hemorrhage">
         <inputExpression id="LiteralExpression_0qhctbs" typeRef="boolean">
-          <text></text>
+          <text>previousPostpartumHemorrhage</text>
         </inputExpression>
       </input>
       <input id="InputClause_0oesyfs" label="Previous stillbirth">
         <inputExpression id="LiteralExpression_0p50idm" typeRef="boolean">
-          <text></text>
+          <text>previousStillbirth</text>
         </inputExpression>
       </input>
       <input id="InputClause_0xwq463" label="SUD abuse">
         <inputExpression id="LiteralExpression_1abcekc" typeRef="boolean">
-          <text></text>
+          <text>sudAbuse</text>
         </inputExpression>
       </input>
       <output id="output_1" label="Pathway" name="pathway" typeRef="string">
