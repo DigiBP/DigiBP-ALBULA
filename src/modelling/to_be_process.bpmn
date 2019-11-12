@@ -72,10 +72,6 @@
       <bpmn:outgoing>SequenceFlow_1219th6</bpmn:outgoing>
     </bpmn:serviceTask>
     <bpmn:sequenceFlow id="SequenceFlow_1219th6" sourceRef="Task_1nvquh7" targetRef="Task_0fs11bm" />
-    <bpmn:userTask id="Task_1cg0iel" name="Check Patient data">
-      <bpmn:incoming>SequenceFlow_1tq3s39</bpmn:incoming>
-      <bpmn:outgoing>SequenceFlow_19kdnao</bpmn:outgoing>
-    </bpmn:userTask>
     <bpmn:businessRuleTask id="Task_1k05hjk" name="Pregnancy Assessment" camunda:decisionRef="Decision_0dw6tue">
       <bpmn:incoming>SequenceFlow_1f7658z</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_0l74qns</bpmn:outgoing>
@@ -182,6 +178,18 @@
     </bpmn:endEvent>
     <bpmn:sequenceFlow id="SequenceFlow_11hhchn" sourceRef="Task_1co91no" targetRef="Task_1ggjtfv" />
     <bpmn:sequenceFlow id="SequenceFlow_1l32emc" sourceRef="Task_1co91no" targetRef="Task_0la5dgx" />
+    <bpmn:serviceTask id="Task_1cg0iel" name="Check Patient data">
+      <bpmn:extensionElements>
+        <camunda:connector>
+          <camunda:inputOutput>
+            <camunda:inputParameter name="url">https://github.com/DigiBP/digibp.github.io/wiki/Service-Integration-Integromat-AS19</camunda:inputParameter>
+          </camunda:inputOutput>
+          <camunda:connectorId>http-connector</camunda:connectorId>
+        </camunda:connector>
+      </bpmn:extensionElements>
+      <bpmn:incoming>SequenceFlow_1tq3s39</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_19kdnao</bpmn:outgoing>
+    </bpmn:serviceTask>
   </bpmn:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_17a2ymb">
@@ -411,9 +419,6 @@
       <bpmndi:BPMNShape id="BusinessRuleTask_1bp3pbt_di" bpmnElement="Task_1k05hjk">
         <dc:Bounds x="1670" y="350" width="100" height="80" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="UserTask_1hgurh8_di" bpmnElement="Task_1cg0iel">
-        <dc:Bounds x="330" y="240" width="100" height="80" />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="SequenceFlow_1f7658z_di" bpmnElement="SequenceFlow_1f7658z">
         <di:waypoint x="1641" y="390" />
         <di:waypoint x="1670" y="390" />
@@ -469,6 +474,9 @@
         <di:waypoint x="2738" y="520" />
         <di:waypoint x="2821" y="520" />
       </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="ServiceTask_07gcohp_di" bpmnElement="Task_1cg0iel">
+        <dc:Bounds x="330" y="240" width="100" height="80" />
+      </bpmndi:BPMNShape>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
 </bpmn:definitions>
