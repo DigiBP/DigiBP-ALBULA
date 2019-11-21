@@ -12,7 +12,7 @@
       </input>
       <input id="InputClause_09ds17a" label="Hypertension in family ">
         <inputExpression id="LiteralExpression_0brj3n4" typeRef="boolean">
-          <text>hypertensionFamily </text>
+          <text>hypertensionFamily</text>
         </inputExpression>
       </input>
       <input id="InputClause_0gkszmc" label="Diabetes in family">
@@ -56,7 +56,7 @@
         </inputExpression>
       </input>
       <input id="InputClause_074q059" label="Previous premature rupture of membranes">
-        <inputExpression id="LiteralExpression_1obtd7q" typeRef="integer">
+        <inputExpression id="LiteralExpression_1obtd7q" typeRef="boolean">
           <text>previousPrematureRuptureMembranes</text>
         </inputExpression>
       </input>
@@ -78,6 +78,11 @@
       <input id="InputClause_0xwq463" label="SUD abuse">
         <inputExpression id="LiteralExpression_1abcekc" typeRef="boolean">
           <text>sudAbuse</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_154dlt7">
+        <inputExpression id="LiteralExpression_0iwzhjd" typeRef="string">
+          <text></text>
         </inputExpression>
       </input>
       <output id="output_1" label="Pathway" name="pathway" typeRef="string">
@@ -132,6 +137,9 @@
         <inputEntry id="UnaryTests_17kia16">
           <text></text>
         </inputEntry>
+        <inputEntry id="UnaryTests_00squhe">
+          <text></text>
+        </inputEntry>
         <outputEntry id="LiteralExpression_0xr07gg">
           <text>"Obstratic Led Team Care"</text>
         </outputEntry>
@@ -181,6 +189,9 @@
           <text></text>
         </inputEntry>
         <inputEntry id="UnaryTests_0pioy8d">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0ao7e1m">
           <text></text>
         </inputEntry>
         <outputEntry id="LiteralExpression_1d9j6zb">
@@ -234,6 +245,9 @@
         <inputEntry id="UnaryTests_0lsulbm">
           <text></text>
         </inputEntry>
+        <inputEntry id="UnaryTests_08xd7du">
+          <text></text>
+        </inputEntry>
         <outputEntry id="LiteralExpression_0f7ubd0">
           <text>"Obstratic Led Team Care"</text>
         </outputEntry>
@@ -283,6 +297,9 @@
           <text></text>
         </inputEntry>
         <inputEntry id="UnaryTests_17nlt7e">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1p1c3oh">
           <text></text>
         </inputEntry>
         <outputEntry id="LiteralExpression_0rmxzx4">
@@ -336,6 +353,9 @@
         <inputEntry id="UnaryTests_0m82fc0">
           <text></text>
         </inputEntry>
+        <inputEntry id="UnaryTests_0aamw9f">
+          <text></text>
+        </inputEntry>
         <outputEntry id="LiteralExpression_052bn9h">
           <text>"Obstratic Led Team Care"</text>
         </outputEntry>
@@ -387,6 +407,9 @@
         <inputEntry id="UnaryTests_0mjlz83">
           <text></text>
         </inputEntry>
+        <inputEntry id="UnaryTests_0au7vhj">
+          <text></text>
+        </inputEntry>
         <outputEntry id="LiteralExpression_00a2ti2">
           <text>"Obstratic Led Team Care"</text>
         </outputEntry>
@@ -424,7 +447,7 @@
           <text></text>
         </inputEntry>
         <inputEntry id="UnaryTests_156l8cx">
-          <text>&gt;37</text>
+          <text>-</text>
         </inputEntry>
         <inputEntry id="UnaryTests_0ige1ty">
           <text></text>
@@ -436,6 +459,9 @@
           <text></text>
         </inputEntry>
         <inputEntry id="UnaryTests_0wv6yql">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1wnpjs2">
           <text></text>
         </inputEntry>
         <outputEntry id="LiteralExpression_01jdvlo">
@@ -489,6 +515,9 @@
         <inputEntry id="UnaryTests_15xrkux">
           <text></text>
         </inputEntry>
+        <inputEntry id="UnaryTests_0ulfcim">
+          <text></text>
+        </inputEntry>
         <outputEntry id="LiteralExpression_1b7pnwk">
           <text>"Further check/clarification required"</text>
         </outputEntry>
@@ -538,6 +567,9 @@
           <text></text>
         </inputEntry>
         <inputEntry id="UnaryTests_1arankw">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1n6deow">
           <text></text>
         </inputEntry>
         <outputEntry id="LiteralExpression_1mpuhyh">
@@ -591,6 +623,9 @@
         <inputEntry id="UnaryTests_1eyh83x">
           <text></text>
         </inputEntry>
+        <inputEntry id="UnaryTests_0sbqc5e">
+          <text></text>
+        </inputEntry>
         <outputEntry id="LiteralExpression_0f95smp">
           <text>"Obstratic Led Team Care"</text>
         </outputEntry>
@@ -641,6 +676,9 @@
         </inputEntry>
         <inputEntry id="UnaryTests_1ovu89a">
           <text>true</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0edq6bk">
+          <text></text>
         </inputEntry>
         <outputEntry id="LiteralExpression_0bf44p5">
           <text>"Obstratic Led Team Care"</text>
@@ -693,6 +731,9 @@
         <inputEntry id="UnaryTests_1atp1l7">
           <text>false</text>
         </inputEntry>
+        <inputEntry id="UnaryTests_1h14sdr">
+          <text></text>
+        </inputEntry>
         <outputEntry id="LiteralExpression_05w7r36">
           <text>"Midwife Led Team Care"</text>
         </outputEntry>
@@ -744,6 +785,9 @@
         <inputEntry id="UnaryTests_0udyo3l">
           <text>false</text>
         </inputEntry>
+        <inputEntry id="UnaryTests_0stoal9">
+          <text></text>
+        </inputEntry>
         <outputEntry id="LiteralExpression_142e3er">
           <text>"Midwife Led Team Care"</text>
         </outputEntry>
@@ -794,6 +838,9 @@
         </inputEntry>
         <inputEntry id="UnaryTests_1xbgc4h">
           <text>false</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0b0es4m">
+          <text></text>
         </inputEntry>
         <outputEntry id="LiteralExpression_1ebro6n">
           <text>"Midwife Led Team Care"</text>
