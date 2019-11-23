@@ -3,20 +3,20 @@
   <bpmn:collaboration id="Collaboration_17a2ymb">
     <bpmn:participant id="Participant_0hzz98n" name="Patient" />
     <bpmn:participant id="Participant_14kfpdp" name="Hospital" processRef="Process_0b79huj" />
+    <bpmn:messageFlow id="MessageFlow_0zfbg11" sourceRef="Participant_0hzz98n" targetRef="StartEvent_0eqv1u5" />
     <bpmn:messageFlow id="MessageFlow_17pw7oz" sourceRef="Task_10xf16x" targetRef="Participant_0hzz98n" />
     <bpmn:messageFlow id="MessageFlow_03dw6os" sourceRef="Participant_14kfpdp" targetRef="Participant_0hzz98n" />
     <bpmn:messageFlow id="MessageFlow_0qf1h3u" sourceRef="Task_15lo19u" targetRef="Participant_0hzz98n" />
-    <bpmn:messageFlow id="MessageFlow_0l7honc" sourceRef="Participant_0hzz98n" targetRef="StartEvent_1vm4t8x" />
   </bpmn:collaboration>
   <bpmn:process id="Process_0b79huj" isExecutable="false">
     <bpmn:laneSet id="LaneSet_10upc5b">
       <bpmn:lane id="Lane_0yx1x40" name="Receptionist">
         <bpmn:flowNodeRef>Task_15lo19u</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>IntermediateThrowEvent_1lewmz2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>StartEvent_0eqv1u5</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>ExclusiveGateway_0yfty2c</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Task_10xf16x</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Task_1cg0iel</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>StartEvent_1vm4t8x</bpmn:flowNodeRef>
       </bpmn:lane>
       <bpmn:lane id="Lane_0hu4cvy" name="Obstertrician">
         <bpmn:flowNodeRef>Task_1co91no</bpmn:flowNodeRef>
@@ -46,6 +46,7 @@
     </bpmn:laneSet>
     <bpmn:sequenceFlow id="SequenceFlow_0vazlrw" name="N" sourceRef="ExclusiveGateway_0yfty2c" targetRef="Task_10xf16x" />
     <bpmn:sequenceFlow id="SequenceFlow_19kdnao" sourceRef="Task_1cg0iel" targetRef="ExclusiveGateway_0yfty2c" />
+    <bpmn:sequenceFlow id="SequenceFlow_1tq3s39" sourceRef="StartEvent_0eqv1u5" targetRef="Task_1cg0iel" />
     <bpmn:sequenceFlow id="SequenceFlow_05bav69" sourceRef="IntermediateThrowEvent_1lewmz2" targetRef="Task_0fs11bm" />
     <bpmn:sequenceFlow id="SequenceFlow_09xnjgz" sourceRef="Task_15lo19u" targetRef="IntermediateThrowEvent_1lewmz2" />
     <bpmn:sequenceFlow id="SequenceFlow_0jnvxg8" sourceRef="Task_1co91no" targetRef="Task_08bhknv" />
@@ -73,8 +74,8 @@
     <bpmn:sequenceFlow id="SequenceFlow_1dtvrsg" name="Y" sourceRef="ExclusiveGateway_0yfty2c" targetRef="Task_15lo19u" />
     <bpmn:sequenceFlow id="SequenceFlow_1syxlao" sourceRef="Task_10xf16x" targetRef="Task_1cg0iel" />
     <bpmn:userTask id="Task_1cg0iel" name="Check patient data">
+      <bpmn:incoming>SequenceFlow_1tq3s39</bpmn:incoming>
       <bpmn:incoming>SequenceFlow_1syxlao</bpmn:incoming>
-      <bpmn:incoming>SequenceFlow_0jj5vud</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_19kdnao</bpmn:outgoing>
     </bpmn:userTask>
     <bpmn:manualTask id="Task_10xf16x" name="Follow up">
@@ -86,6 +87,10 @@
       <bpmn:outgoing>SequenceFlow_0vazlrw</bpmn:outgoing>
       <bpmn:outgoing>SequenceFlow_1dtvrsg</bpmn:outgoing>
     </bpmn:exclusiveGateway>
+    <bpmn:startEvent id="StartEvent_0eqv1u5" name="Register via FaceBook">
+      <bpmn:outgoing>SequenceFlow_1tq3s39</bpmn:outgoing>
+      <bpmn:messageEventDefinition />
+    </bpmn:startEvent>
     <bpmn:intermediateCatchEvent id="IntermediateThrowEvent_1lewmz2" name="Day of appoitment">
       <bpmn:incoming>SequenceFlow_09xnjgz</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_05bav69</bpmn:outgoing>
@@ -179,11 +184,6 @@
       <bpmn:incoming>SequenceFlow_0ofu8z0</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_0cgev61</bpmn:outgoing>
     </bpmn:serviceTask>
-    <bpmn:startEvent id="StartEvent_1vm4t8x" name="Register via FaceBook">
-      <bpmn:outgoing>SequenceFlow_0jj5vud</bpmn:outgoing>
-      <bpmn:messageEventDefinition id="MessageEventDefinition_0a2tsbm" />
-    </bpmn:startEvent>
-    <bpmn:sequenceFlow id="SequenceFlow_0jj5vud" sourceRef="StartEvent_1vm4t8x" targetRef="Task_1cg0iel" />
   </bpmn:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_17a2ymb">
@@ -193,6 +193,20 @@
       <bpmndi:BPMNShape id="Participant_14kfpdp_di" bpmnElement="Participant_14kfpdp" isHorizontal="true">
         <dc:Bounds x="170" y="190" width="3280" height="985" />
       </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="StartEvent_0x4s089_di" bpmnElement="StartEvent_0eqv1u5">
+        <dc:Bounds x="352" y="272" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="341" y="315" width="59" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="MessageFlow_0zfbg11_di" bpmnElement="MessageFlow_0zfbg11">
+        <di:waypoint x="370" y="143" />
+        <di:waypoint x="370" y="272" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_1tq3s39_di" bpmnElement="SequenceFlow_1tq3s39">
+        <di:waypoint x="388" y="290" />
+        <di:waypoint x="455" y="290" />
+      </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="ExclusiveGateway_0yfty2c_di" bpmnElement="ExclusiveGateway_0yfty2c" isMarkerVisible="true">
         <dc:Bounds x="630" y="265" width="50" height="50" />
         <bpmndi:BPMNLabel>
@@ -450,20 +464,6 @@
       <bpmndi:BPMNShape id="ServiceTask_0ruwr8u_di" bpmnElement="Task_1myjg08">
         <dc:Bounds x="2630" y="900" width="100" height="80" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="StartEvent_1vm4t8x_di" bpmnElement="StartEvent_1vm4t8x">
-        <dc:Bounds x="342" y="272" width="36" height="36" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="331" y="315" width="59" height="27" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNEdge id="SequenceFlow_0jj5vud_di" bpmnElement="SequenceFlow_0jj5vud">
-        <di:waypoint x="378" y="290" />
-        <di:waypoint x="455" y="290" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="MessageFlow_0l7honc_di" bpmnElement="MessageFlow_0l7honc">
-        <di:waypoint x="360" y="143" />
-        <di:waypoint x="360" y="272" />
-      </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
 </bpmn:definitions>
