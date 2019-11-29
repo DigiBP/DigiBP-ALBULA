@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/DMN/20151101/dmn.xsd" id="Definitions_06a44cg" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="3.3.4">
+  <decision id="Decision_1elibqf" name="whoToAlert">
+    <decisionTable id="decisionTable_1">
+      <input id="input_1" label="Pathway">
+        <inputExpression id="inputExpression_1" typeRef="string">
+          <text>pathway</text>
+        </inputExpression>
+      </input>
+      <output id="output_1" label="Who" name="who" typeRef="string" />
+      <rule id="DecisionRule_1avhdhz">
+        <inputEntry id="UnaryTests_1h1cwx5">
+          <text>"red"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_08c73eo">
+          <text>"Send a message to inform the doctor, midwife and nurse."</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_03n49ky">
+        <inputEntry id="UnaryTests_01fk9f0">
+          <text>"green"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0y491fp">
+          <text>"Send a message to inform midwife and nurse."</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+</definitions>
