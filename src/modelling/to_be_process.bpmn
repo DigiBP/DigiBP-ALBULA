@@ -11,14 +11,6 @@
   <bpmn:process id="Process_0b79huj" isExecutable="false">
     <bpmn:laneSet id="LaneSet_10upc5b">
       <bpmn:lane id="Lane_0yx1x40" name="Receptionist">
-<<<<<<< HEAD
-        <bpmn:flowNodeRef>Task_15lo19u</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>IntermediateThrowEvent_1lewmz2</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>ExclusiveGateway_0yfty2c</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Task_10xf16x</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Task_1cg0iel</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>StartEvent_1vm4t8x</bpmn:flowNodeRef>
-=======
         <bpmn:flowNodeRef>Task_1cg0iel</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Task_10xf16x</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>ExclusiveGateway_0yfty2c</bpmn:flowNodeRef>
@@ -30,7 +22,6 @@
         <bpmn:flowNodeRef>IntermediateThrowEvent_086giew</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Task_1lvfbft</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Task_1myjg08</bpmn:flowNodeRef>
->>>>>>> f355b4c6db2609cddb363d83843a7b691a4ce524
       </bpmn:lane>
       <bpmn:lane id="Lane_0hu4cvy" name="Obstertrician">
         <bpmn:flowNodeRef>Task_0r0aho9</bpmn:flowNodeRef>
@@ -169,13 +160,6 @@
       <bpmn:incoming>SequenceFlow_1ltlai8</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_1wavgux</bpmn:outgoing>
     </bpmn:serviceTask>
-<<<<<<< HEAD
-    <bpmn:startEvent id="StartEvent_1vm4t8x" name="Register via FaceBook">
-      <bpmn:outgoing>SequenceFlow_0jj5vud</bpmn:outgoing>
-      <bpmn:messageEventDefinition id="MessageEventDefinition_0a2tsbm" />
-    </bpmn:startEvent>
-    <bpmn:sequenceFlow id="SequenceFlow_0jj5vud" sourceRef="StartEvent_1vm4t8x" targetRef="Task_1cg0iel" />
-=======
     <bpmn:parallelGateway id="ExclusiveGateway_1w2p5m7">
       <bpmn:incoming>SequenceFlow_03wwv8h</bpmn:incoming>
       <bpmn:incoming>SequenceFlow_08ler7j</bpmn:incoming>
@@ -216,7 +200,6 @@
     <bpmn:sequenceFlow id="SequenceFlow_1nuose9" sourceRef="Task_1lvfbft" targetRef="Task_1myjg08" />
     <bpmn:sequenceFlow id="SequenceFlow_1o6q1p9" sourceRef="Task_1myjg08" targetRef="Task_1erobh4" />
     <bpmn:sequenceFlow id="SequenceFlow_1ltlai8" sourceRef="Task_1myjg08" targetRef="Task_1jdgoiz" />
->>>>>>> f355b4c6db2609cddb363d83843a7b691a4ce524
   </bpmn:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_17a2ymb">
@@ -438,21 +421,6 @@
       <bpmndi:BPMNShape id="ManualTask_0k0lyu8_di" bpmnElement="Task_1ggjtfv">
         <dc:Bounds x="2934" y="960" width="100" height="80" />
       </bpmndi:BPMNShape>
-<<<<<<< HEAD
-      <bpmndi:BPMNShape id="StartEvent_1vm4t8x_di" bpmnElement="StartEvent_1vm4t8x">
-        <dc:Bounds x="342" y="272" width="36" height="36" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="331" y="315" width="59" height="27" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNEdge id="SequenceFlow_0jj5vud_di" bpmnElement="SequenceFlow_0jj5vud">
-        <di:waypoint x="378" y="290" />
-        <di:waypoint x="455" y="290" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="MessageFlow_0l7honc_di" bpmnElement="MessageFlow_0l7honc">
-        <di:waypoint x="360" y="143" />
-        <di:waypoint x="360" y="272" />
-=======
       <bpmndi:BPMNEdge id="SequenceFlow_03wwv8h_di" bpmnElement="SequenceFlow_03wwv8h">
         <di:waypoint x="3034" y="1010" />
         <di:waypoint x="3094" y="1010" />
@@ -509,7 +477,6 @@
         <di:waypoint x="2500" y="400" />
         <di:waypoint x="2500" y="930" />
         <di:waypoint x="2696" y="930" />
->>>>>>> f355b4c6db2609cddb363d83843a7b691a4ce524
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
