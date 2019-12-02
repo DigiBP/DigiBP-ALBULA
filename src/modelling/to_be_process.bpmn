@@ -152,9 +152,14 @@
       <bpmn:outgoing>SequenceFlow_0god9d2</bpmn:outgoing>
     </bpmn:exclusiveGateway>
     <bpmn:intermediateCatchEvent id="IntermediateThrowEvent_086giew" name="Patient recognized by face detection">
+      <bpmn:extensionElements>
+        <camunda:executionListener event="start">
+          <camunda:script scriptFormat="JavaScript">load('http://127.0.0.1:5500/src/main/resources/META-INF/resources/index.html')</camunda:script>
+        </camunda:executionListener>
+      </bpmn:extensionElements>
       <bpmn:incoming>SequenceFlow_1p5gklf</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_1xsqkyh</bpmn:outgoing>
-      <bpmn:signalEventDefinition />
+      <bpmn:signalEventDefinition signalRef="Signal_0r95v4h" />
     </bpmn:intermediateCatchEvent>
     <bpmn:userTask id="Task_1lvfbft" name="Check pathway">
       <bpmn:extensionElements>
@@ -248,6 +253,7 @@ personalDiabetes = personalDiabetes;</camunda:script>
     <bpmn:sequenceFlow id="SequenceFlow_0py2ds2" sourceRef="ServiceTask_1whoznk" targetRef="Task_1cg0iel" />
     <bpmn:sequenceFlow id="SequenceFlow_1bcw335" sourceRef="StartEvent_1pdjjuu" targetRef="ServiceTask_1whoznk" />
   </bpmn:process>
+  <bpmn:signal id="Signal_0r95v4h" name="faceRecognized" />
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_17a2ymb">
       <bpmndi:BPMNShape id="Participant_1vnfha3_di" bpmnElement="Participant_0hzz98n" isHorizontal="true">

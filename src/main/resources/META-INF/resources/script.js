@@ -1,27 +1,66 @@
 const video = document.getElementById('video')
-
+var setUp = true
+var url="https://docs.google.com/spreadsheets/d/1hZ8hSMVrYOTRgKt57JnVF_cJR7W986TOV_TzKLGW990/edit?usp=sharing";
+var labels = []
+var faceMatcher;
+function showInfo(data, tabletop) {
+  for (i = 0; i<data.length-1; i++){
+    label = data[i]["First Name"] + " "+ data[i]["Last Name"]
+    labels.push(label)
+    }
+    console.log("fetching new data...")
+    if (setUp){
+      startVideo()
+      setUp = false
+    }
+  }
+// URL of the public spreadsheet
 Promise.all([
   faceapi.nets.faceRecognitionNet.loadFromUri('./models'),
   faceapi.nets.faceLandmark68Net.loadFromUri('./models'),
   faceapi.nets.ssdMobilenetv1.loadFromUri('./models'),
-  faceapi.nets.tinyFaceDetector.loadFromUri('./models')
-]).then(startVideo)
+  faceapi.nets.tinyFaceDetector.loadFromUri('./models'),
+  Tabletop.init({key: url, callback: showInfo, simpleSheet: true})
+])
 
-async function startVideo() {
-  const labeledFaceDescriptors = await loadLabeledImages()
+function init() {
   navigator.getUserMedia(
     { video: {} },
     stream => video.srcObject = stream,
     err => console.error(err)
   )
+  /* var url="https://docs.google.com/spreadsheets/d/1hZ8hSMVrYOTRgKt57JnVF_cJR7W986TOV_TzKLGW990/edit?usp=sharing";
+  var labels = []
+  Tabletop.init( { key: url,
+                    callback: showInfo,
+                    simpleSheet: true } ) */
+                    
+  /* function showInfo(data, tabletop) {
+  for (i = 0; i<data.length-1; i++){
+    label = data[i]["First Name"] + " "+ data[i]["Last Name"]
+    labels.push(label)
+    }
+    startVideo(labels)
+  } */
+}
+async function startVideo() {
+  const labeledFaceDescriptors = await loadLabeledImages(labels);
+  navigator.getUserMedia(
+    { video: {} },
+    stream => video.srcObject = stream,
+    err => console.error(err)
+  )
+ /*  const mainLogic = async _ => {
+    const labeledFaceDescriptors = await loadLabeledImages(labels);
+    start(labeledFaceDescriptors)
+  }
+  mainLogic() */
   start(labeledFaceDescriptors)
-  //const lbd = labelImages
-  //setTimeout(function() {start(lbd);},3000);
 }
 function start(labeledFaceDescriptors) {
-
-  //const faceMatcher = new faceapi.FaceMatcher(labeledFaceDescriptors, 0.6)
-  const faceMatcher = new faceapi.FaceMatcher(labeledFaceDescriptors, 0.6)
+  faceMatcher = new faceapi.FaceMatcher(labeledFaceDescriptors, 0.6)
+  updateLabels()
+  console.log("starting ...")
   video.addEventListener('play', () => {
     const canvas = faceapi.createCanvasFromMedia(video)
     document.body.append(canvas)
@@ -40,20 +79,22 @@ function start(labeledFaceDescriptors) {
   },100)
 })
 }
-function loadLabeledImages() {
-  const labels = ['Black Widow', 'Captain America', 'Captain Marvel', 'Hawkeye', 'Jim Rhodes', 'Thor', 'Tony Stark','Marco']
+function loadLabeledImages(labels) {
+  //const labels = ['Mara Wallis', 'Maria Pereira', 'Marita Wick', 'Milena Long']
   return Promise.all(
     labels.map(async label => {
       const descriptions = []
-      for (let i = 1; i <= 2; i++) {
-        const img = await faceapi.fetchImage(`./labeled_images/${label}/${i}.jpg`)
-        console.log(`./labeled_images/${label}/${i}.jpg`)
-        const detections = await faceapi.detectSingleFace(img).withFaceLandmarks().withFaceDescriptor()
-        descriptions.push(detections.descriptor)
-        console.log("**************")
-      }
-
+      const img = await faceapi.fetchImage(`./dbImages/${label}.jpg`)
+      const detections = await faceapi.detectSingleFace(img).withFaceLandmarks().withFaceDescriptor()
+      descriptions.push(detections.descriptor)
       return new faceapi.LabeledFaceDescriptors(label, descriptions)
     })
   )
+}
+function updateLabels(){
+  setInterval(async () => {
+  Tabletop.init({key: url, callback: showInfo, simpleSheet: true})
+  const labeledFaceDescriptors = await loadLabeledImages(labels);
+  faceMatcher = new faceapi.FaceMatcher(labeledFaceDescriptors, 0.6)
+  },1000)
 }
