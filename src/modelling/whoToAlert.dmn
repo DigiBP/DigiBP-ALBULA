@@ -7,10 +7,18 @@
           <text>pathway</text>
         </inputExpression>
       </input>
+      <input id="InputClause_0b0prg3">
+        <inputExpression id="LiteralExpression_154wn8y" typeRef="string">
+          <text></text>
+        </inputExpression>
+      </input>
       <output id="output_1" label="Who" name="who" typeRef="string" />
       <rule id="DecisionRule_1avhdhz">
         <inputEntry id="UnaryTests_1h1cwx5">
           <text>"red"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_054xh7f">
+          <text></text>
         </inputEntry>
         <outputEntry id="LiteralExpression_08c73eo">
           <text>"Send a message to inform the doctor, midwife and nurse."</text>
@@ -19,6 +27,9 @@
       <rule id="DecisionRule_03n49ky">
         <inputEntry id="UnaryTests_01fk9f0">
           <text>"green"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0j9fppn">
+          <text></text>
         </inputEntry>
         <outputEntry id="LiteralExpression_0y491fp">
           <text>"Send a message to inform midwife and nurse."</text>
