@@ -149,7 +149,7 @@ personalDiabetes = personalDiabetes;</camunda:script>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_17a2ymb">
       <bpmndi:BPMNShape id="Participant_1vnfha3_di" bpmnElement="Participant_0hzz98n" isHorizontal="true">
-        <dc:Bounds x="170" y="120" width="1860" height="60" />
+        <dc:Bounds x="161" y="120" width="1860" height="60" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Participant_14kfpdp_di" bpmnElement="Participant_14kfpdp" isHorizontal="true">
         <dc:Bounds x="170" y="201" width="1860" height="1044" />
