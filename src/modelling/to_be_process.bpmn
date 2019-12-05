@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:bioc="http://bpmn.io/schema/bpmn/biocolor/1.0" id="Definitions_1t4f582" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="3.3.4">
-  <bpmn:collaboration id="Collaboration_17a2ymb">
+  <bpmn:collaboration id="hospital_process">
     <bpmn:participant id="Participant_0hzz98n" name="Patient" />
     <bpmn:participant id="Participant_14kfpdp" name="Hospital" processRef="Process_0b79huj" />
+    <bpmn:messageFlow id="MessageFlow_0l7honc" sourceRef="Participant_0hzz98n" />
+    <bpmn:messageFlow id="MessageFlow_0qf1h3u" sourceRef="Task_15lo19u" targetRef="Participant_0hzz98n" />
     <bpmn:messageFlow id="MessageFlow_17pw7oz" sourceRef="Task_10xf16x" targetRef="Participant_0hzz98n" />
     <bpmn:messageFlow id="MessageFlow_03dw6os" sourceRef="Participant_14kfpdp" targetRef="Participant_0hzz98n" />
-    <bpmn:messageFlow id="MessageFlow_0qf1h3u" sourceRef="Task_15lo19u" targetRef="Participant_0hzz98n" />
-    <bpmn:messageFlow id="MessageFlow_0l7honc" sourceRef="Participant_0hzz98n" />
   </bpmn:collaboration>
   <bpmn:process id="Process_0b79huj" isExecutable="false">
     <bpmn:laneSet id="LaneSet_10upc5b">
@@ -298,7 +298,7 @@ personalDiabetes = personalDiabetes;</camunda:script>
   </bpmn:process>
   <bpmn:signal id="Signal_0r95v4h" name="faceRecognized" />
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
-    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_17a2ymb">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="hospital_process">
       <bpmndi:BPMNShape id="Participant_1vnfha3_di" bpmnElement="Participant_0hzz98n" isHorizontal="true">
         <dc:Bounds x="150" y="80" width="3186" height="60" />
       </bpmndi:BPMNShape>
@@ -330,20 +330,12 @@ personalDiabetes = personalDiabetes;</camunda:script>
           <dc:Bounds x="716" y="403" width="8" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="MessageFlow_17pw7oz_di" bpmnElement="MessageFlow_17pw7oz">
-        <di:waypoint x="810" y="320" />
-        <di:waypoint x="810" y="140" />
-      </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="ServiceTask_10o79rg_di" bpmnElement="Task_15lo19u">
         <dc:Bounds x="942" y="380" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="UserTask_1i8t2ki_di" bpmnElement="Task_03wnqin">
         <dc:Bounds x="1750" y="740" width="100" height="80" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNEdge id="MessageFlow_03dw6os_di" bpmnElement="MessageFlow_03dw6os">
-        <di:waypoint x="1340" y="201" />
-        <di:waypoint x="1340" y="140" />
-      </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="IntermediateCatchEvent_0j39gu1_di" bpmnElement="IntermediateThrowEvent_086giew">
         <dc:Bounds x="2254" y="412" width="36" height="36" />
         <bpmndi:BPMNLabel>
@@ -475,10 +467,6 @@ personalDiabetes = personalDiabetes;</camunda:script>
         <di:waypoint x="3156" y="600" />
         <di:waypoint x="3156" y="740" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="MessageFlow_0qf1h3u_di" bpmnElement="MessageFlow_0qf1h3u">
-        <di:waypoint x="992" y="380" />
-        <di:waypoint x="992" y="140" />
-      </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="UserTask_10hcj43_di" bpmnElement="Task_0fs11bm">
         <dc:Bounds x="1110" y="740" width="100" height="80" />
       </bpmndi:BPMNShape>
@@ -584,6 +572,7 @@ personalDiabetes = personalDiabetes;</camunda:script>
         <di:waypoint x="268" y="360" />
         <di:waypoint x="310" y="360" />
       </bpmndi:BPMNEdge>
+<<<<<<< HEAD
       <bpmndi:BPMNShape id="ServiceTask_17js86y_di" bpmnElement="Task_1lvfbft">
         <dc:Bounds x="2340" y="320" width="100" height="80" />
       </bpmndi:BPMNShape>
@@ -602,6 +591,20 @@ personalDiabetes = personalDiabetes;</camunda:script>
       <bpmndi:BPMNShape id="InclusiveGateway_146yfzh_di" bpmnElement="ExclusiveGateway_0cehdbt">
         <dc:Bounds x="2935" y="685" width="50" height="50" />
       </bpmndi:BPMNShape>
+=======
+      <bpmndi:BPMNEdge id="MessageFlow_0qf1h3u_di" bpmnElement="MessageFlow_0qf1h3u">
+        <di:waypoint x="992" y="380" />
+        <di:waypoint x="992" y="140" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="MessageFlow_17pw7oz_di" bpmnElement="MessageFlow_17pw7oz">
+        <di:waypoint x="810" y="320" />
+        <di:waypoint x="810" y="140" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="MessageFlow_03dw6os_di" bpmnElement="MessageFlow_03dw6os">
+        <di:waypoint x="1340" y="201" />
+        <di:waypoint x="1340" y="140" />
+      </bpmndi:BPMNEdge>
+>>>>>>> 589f91aebe55b63863db3c47a9296337a020e10a
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
 </bpmn:definitions>
