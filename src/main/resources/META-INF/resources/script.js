@@ -73,6 +73,7 @@ function start(labeledFaceDescriptors) {
     const results = resizedDetections.map(d => faceMatcher.findBestMatch(d.descriptor))
     results.forEach((result, i) => {
       const box = resizedDetections[i].detection.box
+      //if (result.toString() in labels){alert("patient found")}
       const drawBox = new faceapi.draw.DrawBox(box, { label: result.toString() })
       drawBox.draw(canvas)
     })

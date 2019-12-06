@@ -1,95 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:bioc="http://bpmn.io/schema/bpmn/biocolor/1.0" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_1b7mhac" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="3.3.4">
-  <bpmn:collaboration id="Collaboration_1wstgul">
-    <bpmn:participant id="Participant_0ifmsna" name="Patient" processRef="Process_1fq885t" />
-    <bpmn:participant id="Participant_1lxp3wr" name="Hospital" processRef="Process_0ru5txl" />
+  <bpmn:collaboration id="pregnancy_path_service">
+    <bpmn:participant id="Participant_1lxp3wr" name="Hospital" processRef="Hospital_birthgiving_process" />
+    <bpmn:participant id="Participant_0sztc4b" name="Patient" />
+    <bpmn:messageFlow id="MessageFlow_0pnrls4" name="Recognized" sourceRef="Participant_0sztc4b" targetRef="faceRecognized" />
   </bpmn:collaboration>
-  <bpmn:process id="Process_1fq885t" isExecutable="true" />
-  <bpmn:process id="Process_0ru5txl" isExecutable="false">
+  <bpmn:process id="Hospital_birthgiving_process" isExecutable="true">
     <bpmn:laneSet id="LaneSet_0ojdzpf">
       <bpmn:lane id="Lane_1pquv4e" name="Receptionist">
-        <bpmn:flowNodeRef>UserTask_1y7qxq7</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>BusinessRuleTask_0w5qn25</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>StartEvent_0wvf6vb</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>faceRecognized</bpmn:flowNodeRef>
       </bpmn:lane>
       <bpmn:lane id="Lane_1klqbyd" name="Obstertrician">
         <bpmn:flowNodeRef>ServiceTask_0ijrfue</bpmn:flowNodeRef>
       </bpmn:lane>
       <bpmn:lane id="Lane_0849p7g" name="Midwife">
         <bpmn:flowNodeRef>EndEvent_0edrkfb</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>ServiceTask_069h2fn</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>ManualTask_0yhiv5z</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ServiceTask_069h2fn</bpmn:flowNodeRef>
       </bpmn:lane>
       <bpmn:lane id="Lane_0ex335y" name="Nurses">
         <bpmn:flowNodeRef>ManualTask_1q4ol5s</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>ManualTask_0puuwge</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>ParallelGateway_0e73ycz</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>ServiceTask_0de3v8v</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>ParallelGateway_1puva8j</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ServiceTask_0de3v8v</bpmn:flowNodeRef>
       </bpmn:lane>
     </bpmn:laneSet>
-    <bpmn:endEvent id="EndEvent_0edrkfb" name="Baby :)">
-      <bpmn:incoming>SequenceFlow_1fqtyhp</bpmn:incoming>
-    </bpmn:endEvent>
-    <bpmn:manualTask id="ManualTask_1q4ol5s" name="Receive patient">
-      <bpmn:incoming>SequenceFlow_170gzcq</bpmn:incoming>
-      <bpmn:outgoing>SequenceFlow_0ol8kqy</bpmn:outgoing>
-    </bpmn:manualTask>
-    <bpmn:manualTask id="ManualTask_0puuwge" name="Prepare room &#38; equipment">
-      <bpmn:incoming>SequenceFlow_0aiz35v</bpmn:incoming>
-      <bpmn:outgoing>SequenceFlow_1k9smo9</bpmn:outgoing>
-    </bpmn:manualTask>
-    <bpmn:serviceTask id="ServiceTask_0ijrfue" name="Alert doctor">
-      <bpmn:incoming>SequenceFlow_1s0wiky</bpmn:incoming>
-      <bpmn:outgoing>SequenceFlow_1jndd88</bpmn:outgoing>
-    </bpmn:serviceTask>
-    <bpmn:serviceTask id="ServiceTask_069h2fn" name="Alert midwif">
-      <bpmn:incoming>SequenceFlow_15fpwgx</bpmn:incoming>
-      <bpmn:outgoing>SequenceFlow_0hq3ejd</bpmn:outgoing>
-    </bpmn:serviceTask>
-    <bpmn:parallelGateway id="ParallelGateway_0e73ycz">
-      <bpmn:incoming>SequenceFlow_1lm1ice</bpmn:incoming>
-      <bpmn:outgoing>SequenceFlow_170gzcq</bpmn:outgoing>
-      <bpmn:outgoing>SequenceFlow_0aiz35v</bpmn:outgoing>
-    </bpmn:parallelGateway>
-    <bpmn:manualTask id="ManualTask_0yhiv5z" name="Assist birth giving">
-      <bpmn:incoming>SequenceFlow_1jndd88</bpmn:incoming>
-      <bpmn:incoming>SequenceFlow_0hq3ejd</bpmn:incoming>
-      <bpmn:incoming>SequenceFlow_18x1keu</bpmn:incoming>
-      <bpmn:outgoing>SequenceFlow_1fqtyhp</bpmn:outgoing>
-    </bpmn:manualTask>
-    <bpmn:serviceTask id="ServiceTask_0de3v8v" name="Alert Nurse">
-      <bpmn:incoming>SequenceFlow_07dr8fs</bpmn:incoming>
-      <bpmn:outgoing>SequenceFlow_1lm1ice</bpmn:outgoing>
-    </bpmn:serviceTask>
-    <bpmn:parallelGateway id="ParallelGateway_1puva8j">
-      <bpmn:incoming>SequenceFlow_0ol8kqy</bpmn:incoming>
-      <bpmn:incoming>SequenceFlow_1k9smo9</bpmn:incoming>
-      <bpmn:outgoing>SequenceFlow_18x1keu</bpmn:outgoing>
-    </bpmn:parallelGateway>
-    <bpmn:userTask id="UserTask_1y7qxq7" name="Check pathway">
-      <bpmn:extensionElements>
-        <camunda:formData>
-          <camunda:formField id="pathway" type="string" />
-          <camunda:formField id="who" type="string" />
-        </camunda:formData>
-      </bpmn:extensionElements>
-      <bpmn:incoming>SequenceFlow_1w5ykud</bpmn:incoming>
-      <bpmn:outgoing>SequenceFlow_1qsturr</bpmn:outgoing>
-    </bpmn:userTask>
-    <bpmn:businessRuleTask id="BusinessRuleTask_0w5qn25" name="whoToAlert" camunda:decisionRef="Decision_1elibqf">
-      <bpmn:incoming>SequenceFlow_1qsturr</bpmn:incoming>
-      <bpmn:outgoing>SequenceFlow_1s0wiky</bpmn:outgoing>
-      <bpmn:outgoing>SequenceFlow_15fpwgx</bpmn:outgoing>
-      <bpmn:outgoing>SequenceFlow_07dr8fs</bpmn:outgoing>
-    </bpmn:businessRuleTask>
-    <bpmn:startEvent id="StartEvent_0wvf6vb" name="Face Detection">
-      <bpmn:outgoing>SequenceFlow_1w5ykud</bpmn:outgoing>
-      <bpmn:messageEventDefinition />
-    </bpmn:startEvent>
     <bpmn:sequenceFlow id="SequenceFlow_1jndd88" sourceRef="ServiceTask_0ijrfue" targetRef="ManualTask_0yhiv5z" />
     <bpmn:sequenceFlow id="SequenceFlow_0hq3ejd" sourceRef="ServiceTask_069h2fn" targetRef="ManualTask_0yhiv5z" />
-    <bpmn:sequenceFlow id="SequenceFlow_1s0wiky" sourceRef="BusinessRuleTask_0w5qn25" targetRef="ServiceTask_0ijrfue" />
     <bpmn:sequenceFlow id="SequenceFlow_1fqtyhp" sourceRef="ManualTask_0yhiv5z" targetRef="EndEvent_0edrkfb" />
     <bpmn:sequenceFlow id="SequenceFlow_18x1keu" sourceRef="ParallelGateway_1puva8j" targetRef="ManualTask_0yhiv5z" />
     <bpmn:sequenceFlow id="SequenceFlow_0ol8kqy" sourceRef="ManualTask_1q4ol5s" targetRef="ParallelGateway_1puva8j" />
@@ -97,30 +35,88 @@
     <bpmn:sequenceFlow id="SequenceFlow_1lm1ice" sourceRef="ServiceTask_0de3v8v" targetRef="ParallelGateway_0e73ycz" />
     <bpmn:sequenceFlow id="SequenceFlow_170gzcq" sourceRef="ParallelGateway_0e73ycz" targetRef="ManualTask_1q4ol5s" />
     <bpmn:sequenceFlow id="SequenceFlow_0aiz35v" sourceRef="ParallelGateway_0e73ycz" targetRef="ManualTask_0puuwge" />
-    <bpmn:sequenceFlow id="SequenceFlow_1qsturr" sourceRef="UserTask_1y7qxq7" targetRef="BusinessRuleTask_0w5qn25" />
-    <bpmn:sequenceFlow id="SequenceFlow_15fpwgx" sourceRef="BusinessRuleTask_0w5qn25" targetRef="ServiceTask_069h2fn" />
-    <bpmn:sequenceFlow id="SequenceFlow_07dr8fs" sourceRef="BusinessRuleTask_0w5qn25" targetRef="ServiceTask_0de3v8v" />
-    <bpmn:sequenceFlow id="SequenceFlow_1w5ykud" sourceRef="StartEvent_0wvf6vb" targetRef="UserTask_1y7qxq7" />
+    <bpmn:startEvent id="faceRecognized" name="Face Detection">
+      <bpmn:extensionElements>
+        <camunda:formData businessKey="businessKey">
+          <camunda:formField id="recognized" type="boolean">
+            <camunda:validation>
+              <camunda:constraint name="readonly" />
+            </camunda:validation>
+          </camunda:formField>
+          <camunda:formField id="businessKey" label="Business Key" type="string" />
+          <camunda:formField id="name" type="string">
+            <camunda:validation>
+              <camunda:constraint name="readonly" />
+            </camunda:validation>
+          </camunda:formField>
+          <camunda:formField id="pathway" label="Pathway" type="string" />
+        </camunda:formData>
+      </bpmn:extensionElements>
+      <bpmn:outgoing>SequenceFlow_1s0wiky</bpmn:outgoing>
+      <bpmn:outgoing>SequenceFlow_15fpwgx</bpmn:outgoing>
+      <bpmn:outgoing>SequenceFlow_07dr8fs</bpmn:outgoing>
+      <bpmn:messageEventDefinition messageRef="Message_0s1j76w" />
+    </bpmn:startEvent>
+    <bpmn:parallelGateway id="ParallelGateway_1puva8j">
+      <bpmn:incoming>SequenceFlow_0ol8kqy</bpmn:incoming>
+      <bpmn:incoming>SequenceFlow_1k9smo9</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_18x1keu</bpmn:outgoing>
+    </bpmn:parallelGateway>
+    <bpmn:manualTask id="ManualTask_0yhiv5z" name="Assist birth giving">
+      <bpmn:incoming>SequenceFlow_1jndd88</bpmn:incoming>
+      <bpmn:incoming>SequenceFlow_0hq3ejd</bpmn:incoming>
+      <bpmn:incoming>SequenceFlow_18x1keu</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1fqtyhp</bpmn:outgoing>
+    </bpmn:manualTask>
+    <bpmn:parallelGateway id="ParallelGateway_0e73ycz">
+      <bpmn:incoming>SequenceFlow_1lm1ice</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_170gzcq</bpmn:outgoing>
+      <bpmn:outgoing>SequenceFlow_0aiz35v</bpmn:outgoing>
+    </bpmn:parallelGateway>
+    <bpmn:manualTask id="ManualTask_0puuwge" name="Prepare room &#38; equipment">
+      <bpmn:incoming>SequenceFlow_0aiz35v</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1k9smo9</bpmn:outgoing>
+    </bpmn:manualTask>
+    <bpmn:manualTask id="ManualTask_1q4ol5s" name="Receive patient">
+      <bpmn:incoming>SequenceFlow_170gzcq</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0ol8kqy</bpmn:outgoing>
+    </bpmn:manualTask>
+    <bpmn:endEvent id="EndEvent_0edrkfb" name="Baby :)">
+      <bpmn:incoming>SequenceFlow_1fqtyhp</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:userTask id="ServiceTask_0ijrfue" name="Alert doctor">
+      <bpmn:incoming>SequenceFlow_1s0wiky</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1jndd88</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:userTask id="ServiceTask_069h2fn" name="Alert midwif">
+      <bpmn:incoming>SequenceFlow_15fpwgx</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0hq3ejd</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:userTask id="ServiceTask_0de3v8v" name="Alert Nurse">
+      <bpmn:incoming>SequenceFlow_07dr8fs</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1lm1ice</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:sequenceFlow id="SequenceFlow_07dr8fs" sourceRef="faceRecognized" targetRef="ServiceTask_0de3v8v" />
+    <bpmn:sequenceFlow id="SequenceFlow_15fpwgx" sourceRef="faceRecognized" targetRef="ServiceTask_069h2fn" />
+    <bpmn:sequenceFlow id="SequenceFlow_1s0wiky" sourceRef="faceRecognized" targetRef="ServiceTask_0ijrfue" />
   </bpmn:process>
+  <bpmn:message id="Message_0s1j76w" name="patientArrived_service" />
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
-    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_1wstgul">
-      <bpmndi:BPMNShape id="Participant_0ifmsna_di" bpmnElement="Participant_0ifmsna" isHorizontal="true">
-        <dc:Bounds x="160" y="80" width="1380" height="60" />
-      </bpmndi:BPMNShape>
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="pregnancy_path_service">
       <bpmndi:BPMNShape id="Participant_1lxp3wr_di" bpmnElement="Participant_1lxp3wr" isHorizontal="true">
-        <dc:Bounds x="160" y="170" width="1380" height="971" />
+        <dc:Bounds x="160" y="200" width="1360" height="830" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Lane_1pquv4e_di" bpmnElement="Lane_1pquv4e" isHorizontal="true">
-        <dc:Bounds x="190" y="170" width="1350" height="233" />
+        <dc:Bounds x="190" y="200" width="1330" height="203" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Lane_1klqbyd_di" bpmnElement="Lane_1klqbyd" isHorizontal="true">
-        <dc:Bounds x="190" y="403" width="1350" height="177" />
+        <dc:Bounds x="190" y="403" width="1330" height="177" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Lane_0849p7g_di" bpmnElement="Lane_0849p7g" isHorizontal="true">
-        <dc:Bounds x="190" y="580" width="1350" height="176" />
+        <dc:Bounds x="190" y="580" width="1330" height="176" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Lane_0ex335y_di" bpmnElement="Lane_0ex335y" isHorizontal="true">
-        <dc:Bounds x="190" y="756" width="1350" height="385" />
+        <dc:Bounds x="190" y="756" width="1330" height="274" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="EndEvent_0edrkfb_di" bpmnElement="EndEvent_0edrkfb">
         <dc:Bounds x="1382" y="658" width="36" height="36" />
@@ -134,29 +130,14 @@
       <bpmndi:BPMNShape id="ManualTask_0puuwge_di" bpmnElement="ManualTask_0puuwge">
         <dc:Bounds x="1024" y="796" width="100" height="80" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="ServiceTask_0ijrfue_di" bpmnElement="ServiceTask_0ijrfue">
-        <dc:Bounds x="786" y="456" width="100" height="80" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="ServiceTask_069h2fn_di" bpmnElement="ServiceTask_069h2fn">
-        <dc:Bounds x="786" y="636" width="100" height="80" />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="ParallelGateway_0e73ycz_di" bpmnElement="ParallelGateway_0e73ycz">
         <dc:Bounds x="929" y="871" width="50" height="50" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="ManualTask_0yhiv5z_di" bpmnElement="ManualTask_0yhiv5z">
         <dc:Bounds x="1196" y="636" width="100" height="80" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="ServiceTask_0de3v8v_di" bpmnElement="ServiceTask_0de3v8v">
-        <dc:Bounds x="786" y="856" width="100" height="80" />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="ParallelGateway_1puva8j_di" bpmnElement="ParallelGateway_1puva8j">
         <dc:Bounds x="1159" y="871" width="50" height="50" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="UserTask_1y7qxq7_di" bpmnElement="UserTask_1y7qxq7">
-        <dc:Bounds x="430" y="286" width="100" height="80" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="BusinessRuleTask_0w5qn25_di" bpmnElement="BusinessRuleTask_0w5qn25">
-        <dc:Bounds x="572" y="286" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="SequenceFlow_1jndd88_di" bpmnElement="SequenceFlow_1jndd88" bioc:stroke="rgb(229, 57, 53)" bioc:fill="rgb(255, 205, 210)">
         <di:waypoint x="886" y="496" />
@@ -166,11 +147,6 @@
       <bpmndi:BPMNEdge id="SequenceFlow_0hq3ejd_di" bpmnElement="SequenceFlow_0hq3ejd" bioc:stroke="rgb(67, 160, 71)" bioc:fill="rgb(200, 230, 201)">
         <di:waypoint x="886" y="676" />
         <di:waypoint x="1196" y="676" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="SequenceFlow_1s0wiky_di" bpmnElement="SequenceFlow_1s0wiky" bioc:stroke="rgb(229, 57, 53)" bioc:fill="rgb(255, 205, 210)">
-        <di:waypoint x="650" y="366" />
-        <di:waypoint x="650" y="496" />
-        <di:waypoint x="786" y="496" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="SequenceFlow_1fqtyhp_di" bpmnElement="SequenceFlow_1fqtyhp">
         <di:waypoint x="1296" y="676" />
@@ -205,29 +181,45 @@
         <di:waypoint x="954" y="826" />
         <di:waypoint x="1024" y="826" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="SequenceFlow_1qsturr_di" bpmnElement="SequenceFlow_1qsturr">
-        <di:waypoint x="530" y="326" />
-        <di:waypoint x="572" y="326" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="SequenceFlow_15fpwgx_di" bpmnElement="SequenceFlow_15fpwgx" bioc:stroke="rgb(67, 160, 71)" bioc:fill="rgb(200, 230, 201)">
-        <di:waypoint x="622" y="366" />
-        <di:waypoint x="622" y="676" />
-        <di:waypoint x="786" y="676" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="SequenceFlow_07dr8fs_di" bpmnElement="SequenceFlow_07dr8fs">
-        <di:waypoint x="590" y="366" />
-        <di:waypoint x="590" y="896" />
-        <di:waypoint x="786" y="896" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNShape id="StartEvent_1d1wqz4_di" bpmnElement="StartEvent_0wvf6vb">
+      <bpmndi:BPMNShape id="StartEvent_1d1wqz4_di" bpmnElement="faceRecognized">
         <dc:Bounds x="292" y="308" width="36" height="36" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="273" y="351" width="74" height="14" />
+          <dc:Bounds x="208" y="319" width="74" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNEdge id="SequenceFlow_1w5ykud_di" bpmnElement="SequenceFlow_1w5ykud">
-        <di:waypoint x="328" y="326" />
-        <di:waypoint x="430" y="326" />
+      <bpmndi:BPMNShape id="Participant_0sztc4b_di" bpmnElement="Participant_0sztc4b" isHorizontal="true">
+        <dc:Bounds x="260" y="120" width="1100" height="60" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="MessageFlow_0pnrls4_di" bpmnElement="MessageFlow_0pnrls4">
+        <di:waypoint x="310" y="180" />
+        <di:waypoint x="310" y="308" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="296" y="240" width="59" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="UserTask_1c8dihv_di" bpmnElement="ServiceTask_0ijrfue">
+        <dc:Bounds x="786" y="456" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="UserTask_0mdr9be_di" bpmnElement="ServiceTask_069h2fn">
+        <dc:Bounds x="786" y="636" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="UserTask_1xrq2ie_di" bpmnElement="ServiceTask_0de3v8v">
+        <dc:Bounds x="786" y="856" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_07dr8fs_di" bpmnElement="SequenceFlow_07dr8fs">
+        <di:waypoint x="300" y="341" />
+        <di:waypoint x="300" y="896" />
+        <di:waypoint x="786" y="896" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_15fpwgx_di" bpmnElement="SequenceFlow_15fpwgx" bioc:stroke="rgb(67, 160, 71)" bioc:fill="rgb(200, 230, 201)">
+        <di:waypoint x="320" y="341" />
+        <di:waypoint x="320" y="676" />
+        <di:waypoint x="786" y="676" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_1s0wiky_di" bpmnElement="SequenceFlow_1s0wiky" bioc:stroke="rgb(229, 57, 53)" bioc:fill="rgb(255, 205, 210)">
+        <di:waypoint x="310" y="344" />
+        <di:waypoint x="310" y="496" />
+        <di:waypoint x="786" y="496" />
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>

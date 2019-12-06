@@ -11,22 +11,22 @@
         </inputExpression>
       </input>
       <input id="InputClause_16pooii" label="Personal hypertension / Systolic">
-        <inputExpression id="LiteralExpression_0lntx28" typeRef="integer">
+        <inputExpression id="LiteralExpression_0lntx28" typeRef="long">
           <text>personalSystolic</text>
         </inputExpression>
       </input>
       <input id="InputClause_08ebryb" label="Personal hypertension / Diastolic">
-        <inputExpression id="LiteralExpression_0y6f8zf" typeRef="integer">
+        <inputExpression id="LiteralExpression_0y6f8zf" typeRef="long">
           <text>personalDiastolic</text>
         </inputExpression>
       </input>
       <input id="InputClause_0k8i65a" label="Personal diabetes">
-        <inputExpression id="LiteralExpression_19dfbn9" typeRef="double">
+        <inputExpression id="LiteralExpression_19dfbn9" typeRef="long">
           <text>personalDiabetes</text>
         </inputExpression>
       </input>
       <input id="InputClause_11epnc6" label="Overweight/obesity - BMI">
-        <inputExpression id="LiteralExpression_1xthf5u" typeRef="double">
+        <inputExpression id="LiteralExpression_1xthf5u" typeRef="long">
           <text>bmi</text>
         </inputExpression>
       </input>
