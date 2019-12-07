@@ -8,11 +8,10 @@
   <bpmn:process id="Process_0b79huj" isExecutable="true">
     <bpmn:laneSet id="LaneSet_10upc5b">
       <bpmn:lane id="Lane_0yx1x40" name="Receptionist">
-        <bpmn:flowNodeRef>Task_1cg0iel</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Task_10xf16x</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>ExclusiveGateway_0yfty2c</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>StartEvent_1pdjjuu</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>UserTask_01k9vox</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ExclusiveGateway_0yfty2c</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_10xf16x</bpmn:flowNodeRef>
       </bpmn:lane>
       <bpmn:lane id="Lane_0hu4cvy" name="Obstertrician">
         <bpmn:flowNodeRef>Task_0r0aho9</bpmn:flowNodeRef>
@@ -27,24 +26,6 @@
         <bpmn:flowNodeRef>ServiceTask_10ej21q</bpmn:flowNodeRef>
       </bpmn:lane>
     </bpmn:laneSet>
-    <bpmn:userTask id="Task_1cg0iel" name="Check patient data" camunda:candidateGroups="Receptionist">
-      <bpmn:extensionElements>
-        <camunda:formData>
-          <camunda:formField id="informationComplete" label="Is all needed information available?" type="boolean" />
-        </camunda:formData>
-      </bpmn:extensionElements>
-      <bpmn:incoming>SequenceFlow_100d92l</bpmn:incoming>
-      <bpmn:outgoing>SequenceFlow_19kdnao</bpmn:outgoing>
-    </bpmn:userTask>
-    <bpmn:manualTask id="Task_10xf16x" name="Follow up">
-      <bpmn:incoming>SequenceFlow_0vazlrw</bpmn:incoming>
-      <bpmn:outgoing>SequenceFlow_1syxlao</bpmn:outgoing>
-    </bpmn:manualTask>
-    <bpmn:exclusiveGateway id="ExclusiveGateway_0yfty2c" name="Complete?">
-      <bpmn:incoming>SequenceFlow_19kdnao</bpmn:incoming>
-      <bpmn:outgoing>SequenceFlow_1dtvrsg</bpmn:outgoing>
-      <bpmn:outgoing>SequenceFlow_0vazlrw</bpmn:outgoing>
-    </bpmn:exclusiveGateway>
     <bpmn:startEvent id="StartEvent_1pdjjuu" name="chatbot_service_finished">
       <bpmn:extensionElements>
         <camunda:formData>
@@ -66,7 +47,6 @@
     <bpmn:sequenceFlow id="SequenceFlow_0vazlrw" name="N" sourceRef="ExclusiveGateway_0yfty2c" targetRef="Task_10xf16x">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${informationComplete == false}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
-    <bpmn:sequenceFlow id="SequenceFlow_19kdnao" sourceRef="Task_1cg0iel" targetRef="ExclusiveGateway_0yfty2c" />
     <bpmn:sequenceFlow id="SequenceFlow_1cdpbcc" sourceRef="Task_0r0aho9" targetRef="ExclusiveGateway_06ie7q1" />
     <bpmn:sequenceFlow id="SequenceFlow_0pnujc0" name="Red Pathway" sourceRef="ExclusiveGateway_10iazxn" targetRef="Task_0r0aho9">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${scoring == "Red"}</bpmn:conditionExpression>
@@ -185,7 +165,16 @@
       <bpmn:incoming>SequenceFlow_1syxlao</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_100d92l</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:sequenceFlow id="SequenceFlow_100d92l" sourceRef="UserTask_01k9vox" targetRef="Task_1cg0iel" />
+    <bpmn:sequenceFlow id="SequenceFlow_100d92l" sourceRef="UserTask_01k9vox" targetRef="ExclusiveGateway_0yfty2c" />
+    <bpmn:exclusiveGateway id="ExclusiveGateway_0yfty2c" name="Complete?">
+      <bpmn:incoming>SequenceFlow_100d92l</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1dtvrsg</bpmn:outgoing>
+      <bpmn:outgoing>SequenceFlow_0vazlrw</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:manualTask id="Task_10xf16x" name="Follow up">
+      <bpmn:incoming>SequenceFlow_0vazlrw</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1syxlao</bpmn:outgoing>
+    </bpmn:manualTask>
   </bpmn:process>
   <bpmn:signal id="Signal_0r95v4h" name="faceRecognized" />
   <bpmn:message id="Message_1lfjvjd" name="registration_stage1" />
@@ -248,9 +237,6 @@
       <bpmndi:BPMNShape id="UserTask_10hcj43_di" bpmnElement="Task_0fs11bm">
         <dc:Bounds x="770" y="680" width="100" height="80" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="UserTask_0g55vuf_di" bpmnElement="Task_1cg0iel">
-        <dc:Bounds x="455" y="260" width="100" height="80" />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="UserTask_0aktb0w_di" bpmnElement="Task_0r0aho9">
         <dc:Bounds x="1320" y="490" width="100" height="80" />
       </bpmndi:BPMNShape>
@@ -289,36 +275,32 @@
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="ExclusiveGateway_0yfty2c_di" bpmnElement="ExclusiveGateway_0yfty2c" isMarkerVisible="true">
-        <dc:Bounds x="630" y="275" width="50" height="50" />
+        <dc:Bounds x="495" y="275" width="50" height="50" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="628" y="251" width="54" height="14" />
+          <dc:Bounds x="493" y="251" width="54" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="SequenceFlow_1dtvrsg_di" bpmnElement="SequenceFlow_1dtvrsg" bioc:stroke="rgb(67, 160, 71)" bioc:fill="rgb(200, 230, 201)">
-        <di:waypoint x="655" y="325" />
-        <di:waypoint x="655" y="720" />
+        <di:waypoint x="520" y="325" />
+        <di:waypoint x="520" y="720" />
         <di:waypoint x="770" y="720" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="666" y="706" width="8" height="14" />
+          <dc:Bounds x="549" y="706" width="8" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="SequenceFlow_0vazlrw_di" bpmnElement="SequenceFlow_0vazlrw" bioc:stroke="rgb(229, 57, 53)" bioc:fill="rgb(255, 205, 210)">
-        <di:waypoint x="680" y="300" />
-        <di:waypoint x="760" y="300" />
+        <di:waypoint x="545" y="300" />
+        <di:waypoint x="620" y="300" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="716" y="282" width="8" height="14" />
+          <dc:Bounds x="579" y="282" width="8" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="SequenceFlow_19kdnao_di" bpmnElement="SequenceFlow_19kdnao">
-        <di:waypoint x="555" y="300" />
-        <di:waypoint x="630" y="300" />
-      </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="ManualTask_1dvxfnm_di" bpmnElement="Task_10xf16x">
-        <dc:Bounds x="760" y="260" width="100" height="80" />
+        <dc:Bounds x="620" y="260" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="SequenceFlow_1syxlao_di" bpmnElement="SequenceFlow_1syxlao" bioc:stroke="rgb(229, 57, 53)" bioc:fill="rgb(255, 205, 210)">
-        <di:waypoint x="790" y="260" />
-        <di:waypoint x="790" y="220" />
+        <di:waypoint x="650" y="260" />
+        <di:waypoint x="650" y="220" />
         <di:waypoint x="370" y="220" />
         <di:waypoint x="370" y="260" />
       </bpmndi:BPMNEdge>
@@ -334,7 +316,7 @@
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="SequenceFlow_100d92l_di" bpmnElement="SequenceFlow_100d92l">
         <di:waypoint x="420" y="300" />
-        <di:waypoint x="455" y="300" />
+        <di:waypoint x="495" y="300" />
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
