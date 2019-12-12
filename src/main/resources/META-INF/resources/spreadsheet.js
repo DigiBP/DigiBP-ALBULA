@@ -27,7 +27,6 @@ names = [];
 await doc.getRows(1, function (err, rows) {
   for (i = 0; i < rows.length; i++){
     row = rows[i]   
-    console.log(row.firstname)
     name = row.firstname
     lastname = row.lastname
     fullName = name+' '+ lastname
@@ -35,7 +34,6 @@ await doc.getRows(1, function (err, rows) {
     //console.log(rows[i])
   } 
 })
-console.log(names)
 await doc.getCells(1,{
   'min-col': 25,
   'max-col': 25,
@@ -45,13 +43,13 @@ await doc.getCells(1,{
     for (i = 1; i< names.length+1; i++) {
       cell = cells[i]
       //console.log(cells.length)
-      console.log(cell)
+      //console.log(cell)
       imageURL = cell._formula
       if (imageURL){
-        console.log("imageUrl:"+imageURL)
+        //console.log("imageUrl:"+imageURL)
         url = extractURL(imageURL)
         newUrl = url.split('.jpg')[0]+".jpg"
-        console.log("new Url: " + url)
+        //console.log("new Url: " + url)
         await download(url, 'dbImages/'+names[i-1]+'.'+'jpg', function(){
         });
       }
