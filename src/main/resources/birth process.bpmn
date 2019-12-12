@@ -4,7 +4,7 @@
     <bpmn:participant id="Participant_1lxp3wr" name="Hospital" processRef="Hospital_birthgiving_process" />
     <bpmn:participant id="Participant_0sztc4b" name="Patient" />
   </bpmn:collaboration>
-  <bpmn:process id="Hospital_birthgiving_process" isExecutable="true">
+  <bpmn:process id="Hospital_birthgiving_process" name="" isExecutable="true">
     <bpmn:laneSet id="LaneSet_0ojdzpf">
       <bpmn:lane id="Lane_1pquv4e" name="Receptionist">
         <bpmn:flowNodeRef>faceRecognized</bpmn:flowNodeRef>
