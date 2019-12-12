@@ -1,7 +1,7 @@
 const video = document.getElementById('video')
 var setUp = true
 var url="https://docs.google.com/spreadsheets/d/1hZ8hSMVrYOTRgKt57JnVF_cJR7W986TOV_TzKLGW990/edit?usp=sharing";
-var endpoint = "https://digibp-albula.herokuapp.com/rest/process-definition/key/Hospital_birthgiving_process/start"
+var endpoint = "https://digibp-albula01.herokuapp.com/rest/process-definition/key/Hospital_birthgiving_process/start"
 var labels = []
 var toRecognize = []
 var faceMatcher;
@@ -96,8 +96,10 @@ function start(labeledFaceDescriptors) {
         }        
         var xhr = new XMLHttpRequest();
         xhr.open("POST", endpoint, true);
+        //xhr.withCredentials= "true";
         xhr.setRequestHeader("Content-Type", "application/json");
         var data = JSON.stringify(data)
+        //fetch(proxyurl + endpoint)
         xhr.send(data); 
         /* data = JSON.stringify(data)
         $.post(endpoint, data, function(data, status){
