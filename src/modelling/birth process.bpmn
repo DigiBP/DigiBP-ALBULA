@@ -84,6 +84,9 @@
     <bpmn:endEvent id="EndEvent_0edrkfb" name="Baby :)">
       <bpmn:incoming>SequenceFlow_1fqtyhp</bpmn:incoming>
     </bpmn:endEvent>
+    <bpmn:sequenceFlow id="SequenceFlow_07dr8fs" sourceRef="faceRecognized" targetRef="ServiceTask_0de3v8v" />
+    <bpmn:sequenceFlow id="SequenceFlow_15fpwgx" sourceRef="faceRecognized" targetRef="ServiceTask_069h2fn" />
+    <bpmn:sequenceFlow id="SequenceFlow_1s0wiky" sourceRef="faceRecognized" targetRef="ServiceTask_0ijrfue" />
     <bpmn:userTask id="ServiceTask_0ijrfue" name="Alert doctor">
       <bpmn:incoming>SequenceFlow_1s0wiky</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_1jndd88</bpmn:outgoing>
@@ -96,9 +99,6 @@
       <bpmn:incoming>SequenceFlow_07dr8fs</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_1lm1ice</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:sequenceFlow id="SequenceFlow_07dr8fs" sourceRef="faceRecognized" targetRef="ServiceTask_0de3v8v" />
-    <bpmn:sequenceFlow id="SequenceFlow_15fpwgx" sourceRef="faceRecognized" targetRef="ServiceTask_069h2fn" />
-    <bpmn:sequenceFlow id="SequenceFlow_1s0wiky" sourceRef="faceRecognized" targetRef="ServiceTask_0ijrfue" />
   </bpmn:process>
   <bpmn:message id="Message_0s1j76w" name="patientArrived_service" />
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
@@ -197,15 +197,6 @@
           <dc:Bounds x="296" y="240" width="59" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNShape id="UserTask_1c8dihv_di" bpmnElement="ServiceTask_0ijrfue">
-        <dc:Bounds x="786" y="456" width="100" height="80" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="UserTask_0mdr9be_di" bpmnElement="ServiceTask_069h2fn">
-        <dc:Bounds x="786" y="636" width="100" height="80" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="UserTask_1xrq2ie_di" bpmnElement="ServiceTask_0de3v8v">
-        <dc:Bounds x="786" y="856" width="100" height="80" />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="SequenceFlow_07dr8fs_di" bpmnElement="SequenceFlow_07dr8fs">
         <di:waypoint x="300" y="341" />
         <di:waypoint x="300" y="896" />
@@ -221,6 +212,15 @@
         <di:waypoint x="310" y="496" />
         <di:waypoint x="786" y="496" />
       </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="UserTask_0czin5w_di" bpmnElement="ServiceTask_0ijrfue">
+        <dc:Bounds x="786" y="456" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="UserTask_1s8j9uk_di" bpmnElement="ServiceTask_069h2fn">
+        <dc:Bounds x="786" y="636" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="UserTask_0xmfwcx_di" bpmnElement="ServiceTask_0de3v8v">
+        <dc:Bounds x="786" y="856" width="100" height="80" />
+      </bpmndi:BPMNShape>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
 </bpmn:definitions>
