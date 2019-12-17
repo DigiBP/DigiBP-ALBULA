@@ -25,9 +25,9 @@
         <bpmn:flowNodeRef>Task_1nqzohv</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Task_035l572</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Task_080er9b</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>ExclusiveGateway_1k9bxk3</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Task_14pdn9b</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>EndEvent_0ok9b3k</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ExclusiveGateway_1k9bxk3</bpmn:flowNodeRef>
       </bpmn:lane>
       <bpmn:lane id="Lane_11mbtjk" name="Nurse">
         <bpmn:flowNodeRef>Task_0mpnaab</bpmn:flowNodeRef>
@@ -99,11 +99,6 @@
       <bpmn:incoming>SequenceFlow_0uvh47t</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_1qww6jy</bpmn:outgoing>
     </bpmn:task>
-    <bpmn:exclusiveGateway id="ExclusiveGateway_1k9bxk3">
-      <bpmn:incoming>SequenceFlow_0zuepb6</bpmn:incoming>
-      <bpmn:incoming>SequenceFlow_1qww6jy</bpmn:incoming>
-      <bpmn:outgoing>SequenceFlow_0fuk0sj</bpmn:outgoing>
-    </bpmn:exclusiveGateway>
     <bpmn:task id="Task_14pdn9b" name="Assist in birth giving">
       <bpmn:incoming>SequenceFlow_0fuk0sj</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_0j2kqud</bpmn:outgoing>
@@ -130,6 +125,11 @@
     <bpmn:sequenceFlow id="SequenceFlow_1qww6jy" sourceRef="Task_0mpnaab" targetRef="ExclusiveGateway_1k9bxk3" />
     <bpmn:sequenceFlow id="SequenceFlow_0fuk0sj" sourceRef="ExclusiveGateway_1k9bxk3" targetRef="Task_14pdn9b" />
     <bpmn:sequenceFlow id="SequenceFlow_0j2kqud" sourceRef="Task_14pdn9b" targetRef="EndEvent_0ok9b3k" />
+    <bpmn:parallelGateway id="ExclusiveGateway_1k9bxk3">
+      <bpmn:incoming>SequenceFlow_0zuepb6</bpmn:incoming>
+      <bpmn:incoming>SequenceFlow_1qww6jy</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0fuk0sj</bpmn:outgoing>
+    </bpmn:parallelGateway>
   </bpmn:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_1nynwrf">
@@ -272,9 +272,6 @@
         <di:waypoint x="2160" y="670" />
         <di:waypoint x="2280" y="670" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNShape id="ExclusiveGateway_1k9bxk3_di" bpmnElement="ExclusiveGateway_1k9bxk3" isMarkerVisible="true">
-        <dc:Bounds x="2475" y="475" width="50" height="50" />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="SequenceFlow_0zuepb6_di" bpmnElement="SequenceFlow_0zuepb6">
         <di:waypoint x="2380" y="500" />
         <di:waypoint x="2475" y="500" />
@@ -301,6 +298,9 @@
         <di:waypoint x="2720" y="500" />
         <di:waypoint x="2822" y="500" />
       </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="ParallelGateway_031hb18_di" bpmnElement="ExclusiveGateway_1k9bxk3">
+        <dc:Bounds x="2475" y="475" width="50" height="50" />
+      </bpmndi:BPMNShape>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
 </bpmn:definitions>
