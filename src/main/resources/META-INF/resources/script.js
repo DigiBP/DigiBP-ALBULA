@@ -15,13 +15,15 @@ function showInfo(data, tabletop) {
     if (!labels.includes(label)){
       labels.push(label)
       toRecognize.push(label.split("_")[0])
-    }
+      }
   }
   console.log("fetching new data...")
   if (setUp){
+    console.log("set up once")
     startVideo()
     setUp = false
   }
+  return false
 }
 // URL of the public spreadsheet
 Promise.all([
@@ -32,13 +34,6 @@ Promise.all([
   Tabletop.init({key: url, callback: showInfo, simpleSheet: true})
 ])
 
-function init() {
-  navigator.getUserMedia(
-    { video: {} },
-    stream => video.srcObject = stream,
-    err => console.error(err)
-  )
-}
 async function startVideo() {
   const labeledFaceDescriptors = await loadLabeledImages(labels);
   navigator.getUserMedia(
@@ -46,11 +41,6 @@ async function startVideo() {
     stream => video.srcObject = stream,
     err => console.error(err)
   )
- /*  const mainLogic = async _ => {
-    const labeledFaceDescriptors = await loadLabeledImages(labels);
-    start(labeledFaceDescriptors)
-  }
-  mainLogic() */
   start(labeledFaceDescriptors)
 }
 function start(labeledFaceDescriptors) {
@@ -78,8 +68,6 @@ function start(labeledFaceDescriptors) {
         toRecognize.splice(toRecognize.indexOf(name.split(" (")[0]), 1 );
         var path = nameWithLabel.split("_")[1]
         var id = nameWithLabel.toString().split("_")[2]
-        console.log(path)
-        console.log(id)
         var data = 
         {
             variables: {
@@ -96,36 +84,29 @@ function start(labeledFaceDescriptors) {
         }        
         var xhr = new XMLHttpRequest();
         xhr.open("POST", endpoint, true);
-        //xhr.withCredentials= "true";
         xhr.setRequestHeader("Content-Type", "application/json");
         var data = JSON.stringify(data)
-        //fetch(proxyurl + endpoint)
         xhr.send(data); 
-        /* data = JSON.stringify(data)
-        $.post(endpoint, data, function(data, status){
-          console.log('data is ${data} and status is ${status}')
-          toRecognize.splice(list.indexOf(name.split(" (")[0]), 1 );
-        }) */
       }
       //console.log(result.toString())
       //console.log(name)
-      const drawBox = new faceapi.draw.DrawBox(box, { label: name })
+      const drawBox = new faceapi.draw.DrawBox(box, { label: name.split(" (")[0] })
       drawBox.draw(canvas)
     })
   },100)
 })
 }
 function loadLabeledImages(labels) {
-  //const labels = ['Mara Wallis', 'Maria Pereira', 'Marita Wick', 'Milena Long']
   return Promise.all(
     labels.map(async label => {
+      if (label){
       const descriptions = []
       label = label.split("_")[0]
-      //console.log(label)
       const img = await faceapi.fetchImage(`./dbImages/${label}.jpg`)
       const detections = await faceapi.detectSingleFace(img).withFaceLandmarks().withFaceDescriptor()
       descriptions.push(detections.descriptor)
       return new faceapi.LabeledFaceDescriptors(label, descriptions)
+      }
     })
   )
 }
@@ -134,5 +115,6 @@ function updateLabels(){
   Tabletop.init({key: url, callback: showInfo, simpleSheet: true})
   const labeledFaceDescriptors = await loadLabeledImages(labels);
   faceMatcher = new faceapi.FaceMatcher(labeledFaceDescriptors, 0.6)
-  },4000)
+  },1000)
+  return false
 }
