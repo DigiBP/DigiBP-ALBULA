@@ -12,7 +12,7 @@ function showInfo(data, tabletop) {
     path = data[i]["Path"]
     id = data[i]["Patient ID"]
     label = label + "_" + path + "_" + id
-    if (!labels.includes(label)){
+    if (!labels.includes(label) && (path!="")){
       labels.push(label)
       toRecognize.push(label.split("_")[0])
       }
@@ -44,6 +44,9 @@ async function startVideo() {
   start(labeledFaceDescriptors)
 }
 function start(labeledFaceDescriptors) {
+  labeledFaceDescriptors = labeledFaceDescriptors.filter(function (el) {
+    return el != null;
+  });
   faceMatcher = new faceapi.FaceMatcher(labeledFaceDescriptors, 0.65)
   updateLabels()
 
@@ -67,7 +70,9 @@ function start(labeledFaceDescriptors) {
       if (toRecognize.includes(name.split(" (")[0])){
         toRecognize.splice(toRecognize.indexOf(name.split(" (")[0]), 1 );
         var path = nameWithLabel.split("_")[1]
+        //if (path =="Green" || path =="Red"){
         var id = nameWithLabel.toString().split("_")[2]
+        console.log(path,id)
         var data = 
         {
             variables: {
@@ -87,7 +92,8 @@ function start(labeledFaceDescriptors) {
         xhr.setRequestHeader("Content-Type", "application/json");
         var data = JSON.stringify(data)
         xhr.send(data); 
-      }
+  //  }
+  }
       //console.log(result.toString())
       //console.log(name)
       const drawBox = new faceapi.draw.DrawBox(box, { label: name.split(" (")[0] })
@@ -102,18 +108,23 @@ function loadLabeledImages(labels) {
       if (label){
       const descriptions = []
       label = label.split("_")[0]
-      const img = await faceapi.fetchImage(`./dbImages/${label}.jpg`)
+      const img = await faceapi.fetchImage(`./dbImages/${label}.jpg`).catch(err => {return})
+      if(img){
       const detections = await faceapi.detectSingleFace(img).withFaceLandmarks().withFaceDescriptor()
       descriptions.push(detections.descriptor)
       return new faceapi.LabeledFaceDescriptors(label, descriptions)
-      }
+      }else{return null}
+    }
     })
   )
 }
 function updateLabels(){
   setInterval(async () => {
   Tabletop.init({key: url, callback: showInfo, simpleSheet: true})
-  const labeledFaceDescriptors = await loadLabeledImages(labels);
+  labeledFaceDescriptors = await loadLabeledImages(labels);
+  labeledFaceDescriptors = labeledFaceDescriptors.filter(function (el) {
+    return el != null;
+  });
   faceMatcher = new faceapi.FaceMatcher(labeledFaceDescriptors, 0.6)
   },1000)
   return false

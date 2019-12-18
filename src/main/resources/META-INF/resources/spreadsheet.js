@@ -12,6 +12,7 @@ function extractURL(dataURI) {
 var download = function(uri, filename){
   request.head(uri, function(err, res, body){
   request(uri).pipe(fs.createWriteStream(filename))
+  console.log("images are up to date");
 });
 };
 
@@ -19,9 +20,8 @@ var download = function(uri, filename){
 var doc = new GoogleSpreadsheet('1hZ8hSMVrYOTRgKt57JnVF_cJR7W986TOV_TzKLGW990');
 doc.makeFeedRequest('')
 // Authenticate with the Google Spreadsheets API.
-var minutes = 0.3, the_interval = minutes * 60 * 1000;
+var minutes = 0.7, the_interval = minutes * 60 * 1000;
 setInterval(function() {
-  console.log("I am doing my "+ minutes+ " minutes check");
   doc.useServiceAccountAuth(creds, async function (err) {
   names = [];
   await doc.getRows(1, function (err, rows) {
@@ -41,7 +41,7 @@ setInterval(function() {
       var i 
       for (i = 1; i< names.length+1; i++) {
         cell = cells[i]
-        path = '../../../../../dbImages/'+names[i-1]+'.'+'jpg'
+        path = './dbImages/'+names[i-1]+'.'+'jpg'
         imageURL = cell._formula
         if (imageURL && !fs.existsSync(path)){
           console.log("imageUrl:"+imageURL)
